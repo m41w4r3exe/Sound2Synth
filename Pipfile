@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+graphviz = "*"
+jsonlines = "*"
+librosa = "*"
+lightning-bolts = "*"
+matplotlib = "*"
+mido = "*"
+numpy = "*"
+pyheaven = "*"
+pytorch-lightning = ">=1.5.9"
+seaborn = "*"
+torch = ">=1.10.1"
+torchaudio = ">=0.10.1"
+tqdm = "*"
+wandb = "*"
+werkzeug = "*"
+send2trash = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"

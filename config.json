@@ -1,16 +1,18 @@
 {
-    "root": "/Users/<USERNAME>/",
-    "data_dir": "/Users/<USERNAME>/data/",
+    "root": "/Users/loopbender/repos/Sound2Synth",
+    "data_dir": "/Users/loopbender/repos/Sound2Synth/data/",
     "temp_output_dir": "./__temp__/",
-    "audio_output_dir": "/Users/<USERNAME>/data/generated/",
+    "audio_output_dir": "/Users/loopbender/repos/Sound2Synth/data/generated/",
     "midi_settings_dir": "./midi_settings/",
-    "server_root": "<SERVER>:/home/<USERNAME>/",
-    "server_data_dir": "<SERVER>:/home/<USERNAME>/data/",
-    "server_code_dir": "<SERVER>:/home/<USERNAME>/Sound2Synth",
+    "server_root": "5.28.89.198:/Users/loopbender/repos/Sound2Synth/",
+    "server_data_dir": "5.28.89.198:/Users/loopbender/repos/Sound2Synth/data/",
+    "server_code_dir": "5.28.89.198:/Users/loopbender/repos/Sound2Synth",
     "rsync_time_interval": 600,
-
     "default_midi_settings_args": {
-        "pitch_range": [0,128],
+        "pitch_range": [
+            0,
+            128
+        ],
         "default_pitch": 60,
         "velocity": 127,
         "ticks_per_beat": 480,
@@ -18,14 +20,13 @@
         "recording_beats": 8,
         "bpm": 120
     },
-
     "default_torchaudio_args": {
         "sample_rate": 48000,
-            "// sample_rate": 44100,
+        "// sample_rate": 44100,
         "input_size": 377,
-            "// input_size": 347,
+        "// input_size": 347,
         "audio_length": 192819,
-            "// audio_length": 177152,
+        "// audio_length": 177152,
         "n_fft": 2048,
         "win_length": null,
         "hop_length": 512,
@@ -38,11 +39,24 @@
         "mel_scale": "htk",
         "n_mfcc": 13
     },
-
     "default_metric_args": {
         "n_mfcc": 30,
-        "n_ffts": [  64, 128, 256, 512,1024,2048],
-        "n_hops": [  16,  32,  64, 128, 256, 512],
+        "n_ffts": [
+            64,
+            128,
+            256,
+            512,
+            1024,
+            2048
+        ],
+        "n_hops": [
+            16,
+            32,
+            64,
+            128,
+            256,
+            512
+        ],
         "alpha": 0.1
     }
 }
