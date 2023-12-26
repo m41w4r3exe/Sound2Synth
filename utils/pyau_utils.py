@@ -1,11 +1,11 @@
 from .audio_utils import *
 
-try:
-    sys.path.append("./PyAU/")
-    from pyau.engines import AudioEngine, MusicScheduler
-except Exception as e:
-    print("Warning: PyAU not supported on this environment!")
-    print(e)
+# try:
+#     sys.path.append("./PyAU/")
+#     from pyau.engines import AudioEngine, MusicScheduler
+# except Exception as e:
+#     print("Warning: PyAU not supported on this environment!")
+#     print(e)
 
 
 class Synthesizer(object):

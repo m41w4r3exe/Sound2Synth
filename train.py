@@ -153,8 +153,8 @@ if __name__ == "__main__":
             ),
         ],
         # GPU configuration
-        gpus=args.n_gpu,
-        auto_select_gpus=True,
+        # gpus=args.n_gpu,
+        # auto_select_gpus=True,
         # Logging configuration
         logger=wandb_logger if args.wandb else True,
         log_every_n_steps=100,

@@ -52,7 +52,6 @@ class BaseInterface(object):
                 classes - 1
             )
             index += classes
-            print(key, result[key], "done")
         for key in cls.regression_parameters:
             result[key] = (
                 float(torch.argmax(data[index : index + cls.regression_nclasses]))
