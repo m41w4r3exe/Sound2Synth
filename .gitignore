@@ -15,3 +15,5 @@ tasks/
 wandb/
 lazysynth/
 data/
+Sound2Synth_checks/
+s2s/

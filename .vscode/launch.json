@@ -11,7 +11,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/train.py",
       "console": "integratedTerminal",
-      "justMyCode": true,
+      "justMyCode": false,
       "args": [
         "--synth", "Dexed",
         "--dataset", "Dexed",
@@ -20,13 +20,11 @@
         "--backbone", "multimodal",
         "--multimodal-use-spec",
         "--classifier", "parameter",
-        "--batch-size", "1",
         "--train-splits", "LARGE31", "AUG31", "RAND31",
         "--split-train-to-val",
-        "--limit-train-batches", "1",
-        "--limit-val-batches", "1",
         "--test-splits", "TEST31",
-        "--identifier", "multi-spec_aug-rand_0"
+        "--identifier", "multi-spec_aug-rand_0",
+        "--cuda", "0",
       ]
     },
     {

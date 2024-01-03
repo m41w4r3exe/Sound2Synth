@@ -1,12 +1,12 @@
 {
-    "root": "/Users/loopbender/repos/Sound2Synth",
-    "data_dir": "/Users/loopbender/repos/Sound2Synth/data/",
+    "root": "/home/m4tr1c3/repos/Sound2Synth",
+    "data_dir": "/home/m4tr1c3/repos/Sound2Synth/data/",
     "temp_output_dir": "./__temp__/",
-    "audio_output_dir": "/Users/loopbender/repos/Sound2Synth/data/generated/",
+    "audio_output_dir": "/home/m4tr1c3/repos/Sound2Synth/data/generated/",
     "midi_settings_dir": "./midi_settings/",
-    "server_root": "5.28.89.198:/Users/loopbender/repos/Sound2Synth/",
-    "server_data_dir": "5.28.89.198:/Users/loopbender/repos/Sound2Synth/data/",
-    "server_code_dir": "5.28.89.198:/Users/loopbender/repos/Sound2Synth",
+    "server_root": "5.28.89.198:/home/m4tr1c3/repos/Sound2Synth/",
+    "server_data_dir": "5.28.89.198:/home/m4tr1c3/repos/Sound2Synth/data/",
+    "server_code_dir": "5.28.89.198:/home/m4tr1c3/repos/Sound2Synth",
     "rsync_time_interval": 600,
     "default_midi_settings_args": {
         "pitch_range": [
@@ -37,7 +37,7 @@
         "onesided": true,
         "n_mels": 128,
         "mel_scale": "htk",
-        "n_mfcc": 13
+        "n_mfcc": 20
     },
     "default_metric_args": {
         "n_mfcc": 30,

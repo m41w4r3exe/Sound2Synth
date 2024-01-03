@@ -10,7 +10,6 @@ from model import get_backbone, get_classifier, Net
 import pytorch_lightning as pl
 from pytorch_lightning.strategies.ddp import DDPStrategy
 from pytorch_lightning.loggers.wandb import WandbLogger
-from pytorch_lightning.utilities.seed import seed_everything
 from pytorch_lightning.callbacks import (
     StochasticWeightAveraging,
     LearningRateMonitor,
@@ -21,6 +20,7 @@ from pytorch_lightning.callbacks import (
 from sound2synth import Sound2SynthModel, SplitDatasets, Identifier
 
 if __name__ == "__main__":
+    torch.set_float32_matmul_precision("medium")
     args = HeavenArguments.from_parser(
         [
             LiteralArgumentDescriptor(
@@ -33,7 +33,7 @@ if __name__ == "__main__":
                 default="multimodal",
             ),
             StrArgumentDescriptor("dataset", short="ds", default="Dexed"),
-            StrArgumentDescriptor("project", short="pj", default="Sound2Synth"),
+            StrArgumentDescriptor("project", short="pj", default="s2s"),
             ListArgumentDescriptor("train_splits", short="train", type=str),
             ListArgumentDescriptor("val_splits", short="val", type=str),
             ListArgumentDescriptor("test_splits", short="test", type=str),
@@ -72,8 +72,6 @@ if __name__ == "__main__":
         args.grad_accum = -args.grad_accum // args.batch_size
     os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda
     args.n_gpu = len([d for d in args.cuda.split(",") if d.strip() != ""])
-
-    seed_everything(args.seed, workers=True)
 
     # Prepare interface
     interface = INTERFACE_MAPPING[args.synth]
@@ -133,7 +131,6 @@ if __name__ == "__main__":
     if args.wandb:
         wandb_logger = WandbLogger(
             project=args.project,
-            entity="kerhaneci",
             log_model="all",
             id=args.identifier,
         )
@@ -145,9 +142,9 @@ if __name__ == "__main__":
         gradient_clip_val=1.0,
         accumulate_grad_batches=args.grad_accum,
         callbacks=[
-            StochasticWeightAveraging(0.01),
+            StochasticWeightAveraging(0.05),
             LearningRateMonitor(logging_interval="epoch"),
-            ModelCheckpoint(monitor="valid_celoss", mode="min"),
+            ModelCheckpoint(monitor="valid_celoss", mode="min", save_last=True),
             EarlyStopping(
                 monitor="valid_celoss", mode="min", patience=8, check_finite=True
             ),
@@ -155,14 +152,16 @@ if __name__ == "__main__":
         # GPU configuration
         # gpus=args.n_gpu,
         # auto_select_gpus=True,
+        devices="auto",
+        accelerator="gpu",
         # Logging configuration
         logger=wandb_logger if args.wandb else True,
         log_every_n_steps=100,
         # Speedup configuration
         benchmark=True,
         strategy=DDPStrategy(find_unused_parameters=(args.model == "group")),
-        limit_train_batches=args.limit_train_batches,
-        limit_val_batches=args.limit_val_batches,
+        # limit_train_batches=args.limit_train_batches,
+        # limit_val_batches=args.limit_val_batches,
         # Tuning configuration
         auto_lr_find=False,  # 2e-4
     )
